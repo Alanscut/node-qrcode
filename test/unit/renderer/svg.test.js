@@ -4,6 +4,7 @@ const fs = require('fs')
 const htmlparser = require('htmlparser2')
 const QRCode = require('core/qrcode')
 const SvgRenderer = require('renderer/svg')
+const StreamMock = require('../../mocks/writable-stream')
 
 function getExpectedViewbox (size, margin) {
   const expectedQrCodeSize = size + margin * 2
@@ -175,4 +176,21 @@ test('Svg renderToFile', function (t) {
   })
 
   fsStub.restore()
+})
+
+test('Svg renderToFileStream', function (t) {
+  const sampleQrData = QRCode.create('sample text', { version: 2 })
+
+  t.notThrow(function () {
+    SvgRenderer.renderToFileStream(new StreamMock(), sampleQrData)
+  }, 'Should not throw with only qrData param')
+
+  t.notThrow(function () {
+    SvgRenderer.renderToFileStream(new StreamMock(), sampleQrData, {
+      margin: 10,
+      scale: 1
+    })
+  }, 'Should not throw with options param')
+
+  t.end()
 })

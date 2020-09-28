@@ -3,6 +3,7 @@ const sinon = require('sinon')
 const fs = require('fs')
 const QRCode = require('core/qrcode')
 const Utf8Renderer = require('renderer/utf8')
+const StreamMock = require('../../mocks/writable-stream')
 
 test('Utf8Renderer interface', function (t) {
   t.type(Utf8Renderer.render, 'function',
@@ -66,4 +67,21 @@ test('Utf8 renderToFile', function (t) {
   })
 
   fsStub.restore()
+})
+
+test('Utf8 renderToFileStream', function (t) {
+  const sampleQrData = QRCode.create('sample text', { version: 2 })
+
+  t.notThrow(function () {
+    Utf8Renderer.renderToFileStream(new StreamMock(), sampleQrData)
+  }, 'Should not throw with only qrData param')
+
+  t.notThrow(function () {
+    Utf8Renderer.renderToFileStream(new StreamMock(), sampleQrData, {
+      margin: 10,
+      scale: 1
+    })
+  }, 'Should not throw with options param')
+
+  t.end()
 })
