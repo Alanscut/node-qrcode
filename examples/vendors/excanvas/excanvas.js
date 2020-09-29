@@ -49,7 +49,7 @@ if (!document.createElement('canvas').getContext) {
   var Z2 = Z / 2;
 
   /**
-   * This funtion is assigned to the <canvas> elements as element.getContext().
+   * This function is assigned to the <canvas> elements as element.getContext().
    * @this {HTMLElement}
    * @return {CanvasRenderingContext2D_}
    */
@@ -351,7 +351,7 @@ if (!document.createElement('canvas').getContext) {
     bezierCurveTo(this, cp1, cp2, p);
   };
 
-  // Helper function that takes the already fixed cordinates.
+  // Helper function that takes the already fixed coordinates.
   function bezierCurveTo(self, cp1, cp2, p) {
     self.currentPath_.push({
       type: 'bezierCurveTo',
@@ -477,7 +477,7 @@ if (!document.createElement('canvas').getContext) {
   contextPrototype.drawImage = function(image, var_args) {
     var dx, dy, dw, dh, sx, sy, sw, sh;
 
-    // to find the original width we overide the width and height
+    // to find the original width we override the width and height
     var oldRuntimeWidth = image.runtimeStyle.width;
     var oldRuntimeHeight = image.runtimeStyle.height;
     image.runtimeStyle.width = 'auto';
@@ -487,7 +487,7 @@ if (!document.createElement('canvas').getContext) {
     var w = image.width;
     var h = image.height;
 
-    // and remove overides
+    // and remove overrides
     image.runtimeStyle.width = oldRuntimeWidth;
     image.runtimeStyle.height = oldRuntimeHeight;
 
@@ -535,7 +535,7 @@ if (!document.createElement('canvas').getContext) {
                 ' style="width:', W, 'px;height:', H, 'px;position:absolute;');
 
     // If filters are necessary (rotation exists), create them
-    // filters are bog-slow, so only create them if abbsolutely necessary
+    // filters are bog-slow, so only create them if absolutely necessary
     // The following check doesn't account for skews (which don't exist
     // in the canvas spec (yet) anyway.
 
