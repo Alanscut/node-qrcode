@@ -76,7 +76,7 @@ test('toString (browser)', function (t) {
 })
 
 test('toString svg', function (t) {
-  const file = path.join(__dirname, '/svgtag.expected.out')
+  const file = path.join(__dirname, '/svg.expected.out')
   t.plan(6)
 
   QRCode.toString('http://www.google.com', {
